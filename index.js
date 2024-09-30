@@ -19,8 +19,8 @@ function initializeData() {
 
 // TASK: Get elements from the DOM
 const elements = {
-  
-  // Nav Elements
+
+  // Nav Els
   logo: document.getElementById('logo'),
   themeSwitch: document.getElementById('switch'),
   sideBar: document.getElementById('side-bar-div'),
@@ -28,6 +28,32 @@ const elements = {
   showSideBarBtn: document.getElementById('show-side-bar-btn'),
   boardsNavLinksDiv: document.getElementById('boards-nav-links-div'),
 
+  // Header Els
+  header: document.getElementById('header'),
+  dropdownBtn: document.getElementById('dropdownBtn'),
+  editBoardBtn: document.getElementById('edit-board-btn'),
+  headerBoardName: document.getElementById('header-board-name'),
+  addNewTaskBtn: document.getElementById('add-new-task-btn'),
+
+  // Task Columns Els
+  todoColumn: document.querySelector('[data-status="todo"] .tasks-container'),
+  doingColumn: document.querySelector('[data-status="doing"] .tasks-container'),
+  doneColumn: document.querySelector('[data-status="done"] .tasks-container'),
+
+  // Modal Els
+  createTaskBtn: document.getElementById('create-task-btn'),
+  newTaskModal: document.getElementById('new-task-modal-window'),
+  cancelAddTaskBtn: document.getElementById('cancel-add-task-btn'),
+ 
+  // Edit Task Modal Els
+  editTaskModal: document.querySelector('.edit-task-modal-window'),
+  editTaskForm: document.getElementById('edit-task-form'),
+  saveTaskChangesBtn: document.getElementById('save-task-changes-btn'),
+  cancelEditBtn: document.getElementById('cancel-edit-btn'),
+  deleteTaskBtn: document.getElementById('delete-task-btn'),
+
+  // Other Elements
+  filterDiv: document.getElementById('filterDiv'),
 
 }
 

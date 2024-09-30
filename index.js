@@ -19,6 +19,15 @@ function initializeData() {
 
 // TASK: Get elements from the DOM
 const elements = {
+  
+  // Nav Elements
+  logo: document.getElementById('logo'),
+  themeSwitch: document.getElementById('switch'),
+  sideBar: document.getElementById('side-bar-div'),
+  hideSideBarBtn: document.getElementById('hide-side-bar-btn'),
+  showSideBarBtn: document.getElementById('show-side-bar-btn'),
+  boardsNavLinksDiv: document.getElementById('boards-nav-links-div'),
+
 
 }
 

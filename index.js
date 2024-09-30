@@ -1,6 +1,6 @@
-// TASK: import helper functions from utils
+// TASK: import helper functions from utils - FIXED
 import { getTasks, createNewTask, patchTask, putTask, deleteTask } from './utils/taskFunction.js';
-// TASK: import initialData
+// TASK: import initialData - FIXED
 import { initialData } from './initialData.js';
 
 /*************************************************************************************************************************************************
@@ -17,7 +17,7 @@ function initializeData() {
   }
 }
 
-// TASK: Get elements from the DOM
+// TASK: Get elements from the DOM - FIXED
 const elements = {
 
   // Nav Els
@@ -96,10 +96,10 @@ function displayBoards(boards) {
 }
 
 // Filters tasks corresponding to the board name and displays them on the DOM.
-// TASK: Fix Bugs
+// TASK: Fix Bugs - FIXED
 function filterAndDisplayTasksByBoard(boardName) {
   const tasks = getTasks(); // Fetch tasks from a simulated local storage function
-  const filteredTasks = tasks.filter(task => task.board = boardName);
+  const filteredTasks = tasks.filter(task => task.board === boardName); // replaced "=" with "==="
 
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
 
@@ -121,7 +121,7 @@ function filterAndDisplayTasksByBoard(boardName) {
       taskElement.setAttribute('data-task-id', task.id);
 
       // Listen for a click event on each task and open a modal
-      taskElement.click() => { 
+      taskElement.addEventListener("click", () => {  //  corrected unfinished click EventListener
         openEditTaskModal(task);
       });
 
@@ -136,9 +136,9 @@ function refreshTasksUI() {
 }
 
 // Styles the active board by adding an active class
-// TASK: Fix Bugs
+// TASK: Fix Bugs - FIXED
 function styleActiveBoard(boardName) {
-  document.querySelectorAll('.board-btn').foreach(btn => { 
+  document.querySelectorAll('.board-btn').forEach(btn => { // fixed incorrect method name from "foreach" to "forEach"
     
     if(btn.textContent === boardName) {
       btn.add('active') 

@@ -173,8 +173,6 @@ function addTaskToUI(task) {
   tasksContainer.appendChild(); 
 }
 
-
-
 function setupEventListeners() {
   // Cancel editing task event listener
   const cancelEditBtn = document.getElementById('cancel-edit-btn');
@@ -203,7 +201,8 @@ function setupEventListeners() {
   elements.themeSwitch.addEventListener('change', toggleTheme);
 
   // Show Add New Task Modal event listener
-  elements.createNewTaskBtn.addEventListener('click', () => {
+  // FIXED - changed "createNewTaskBtn" to "createTaskBtn"
+  elements.createTaskBtn.addEventListener('click', () => {
     toggleModal(true);
     elements.filterDiv.style.display = 'block'; // Also show the filter overlay
   });
@@ -215,7 +214,8 @@ function setupEventListeners() {
 }
 
 // Toggles tasks modal
-// Task: Fix bugs
+// Task: Fix bugs - FIXED
+// Fix toggleModal function by correcting ternary syntax for modal display
 function toggleModal(show, modal = elements.modalWindow) {
   modal.style.display = show ? 'block' : 'none'; 
 }
@@ -229,7 +229,9 @@ function addTask(event) {
 
   //Assign user input to the task object
     const task = {
-      
+      title: document.querySelector('#title-input').value,
+      description: document.querySelector('#desc-input').value,
+      status: document.querySelector('#select-status').value
     };
     const newTask = createNewTask(task);
     if (newTask) {
@@ -243,7 +245,23 @@ function addTask(event) {
 
 
 function toggleSidebar(show) {
- 
+  
+  // Check if the sidebar is currently displayed
+  const isSidebarVisible = elements.sideBar.style.display === 'block';
+
+  // If 'show' is true and the sidebar is not already visible
+  if (show && isSidebarVisible) {
+    elements.sideBar.style.display = 'block'; // Show the sidebar
+    elements.hideSideBarBtn.style.display = 'block'; // Show the hide button
+    elements.showSideBarBtn.style.display = 'none'; // Hide the show button
+  }
+  // If 'show' is false and the sidebar is currently visible
+  else if (!show && isSidebarVisible) {
+    elements.sideBar.style.display = 'none'; // Hide the sidebar
+    elements.hideSideBarBtn.style.display = 'none'; // Hide the hide button
+    elements.showSideBarBtn.style.display = 'block'; // Show the show button
+}
+
 }
 
 function toggleTheme() {
@@ -275,7 +293,7 @@ function saveTaskChanges(taskId) {
   // Create an object with the updated task details
 
 
-  // Update task using a hlper functoin
+  // Update task using a helper functoin
  
 
   // Close the modal and refresh the UI to reflect the changes

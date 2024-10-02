@@ -245,12 +245,11 @@ function addTask(event) {
 
 
 function toggleSidebar(show) {
-  
   // Check if the sidebar is currently displayed
-  const isSidebarVisible = elements.sideBar.style.display === 'block';
+  const isSidebarDisplayed = elements.sideBar.style.display === 'block';
 
   // If 'show' is true and the sidebar is not already visible
-  if (show && isSidebarVisible) {
+  if (show && isSidebarDisplayed) {
     elements.sideBar.style.display = 'block'; // Show the sidebar
     elements.hideSideBarBtn.style.display = 'block'; // Show the hide button
     elements.showSideBarBtn.style.display = 'none'; // Hide the show button

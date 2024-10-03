@@ -261,6 +261,7 @@ function addTask(event) {
     elements.sideBar.style.display = 'none'; // Sidebar hidden
     elements.hideSideBarBtn.style.display = 'none'; // Hide button hidden
     elements.showSideBarBtn.style.display = 'block'; // Show button visible
+
   };
 
   function toggleSidebar(show) {
@@ -282,9 +283,19 @@ function addTask(event) {
   }
   
 
-function toggleTheme() {
 
+
+function toggleTheme() {
+    if (elements.themeSwitch.checked) {
+        document.body.classList.remove('dark-theme');
+        document.body.classList.add('light-theme');
+    } else {
+        document.body.classList.remove('light-theme');
+        document.body.classList.add('dark-theme'); 
+    }
 }
+// Add event listener for the theme switch
+elements.themeSwitch.addEventListener('change', toggleTheme);
 
 
 

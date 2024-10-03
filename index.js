@@ -1,5 +1,5 @@
 // TASK: import helper functions from utils - FIXED
-import { getTasks, createNewTask, patchTask, putTask, deleteTask } from './utils/taskFunction.js';
+import { getTasks, createNewTask, patchTask, putTask, deleteTask } from './utils/taskFunctions.js';
 // TASK: import initialData - FIXED
 import { initialData } from './initialData.js';
 
@@ -208,7 +208,7 @@ function setupEventListeners() {
   });
 
   // Add new task form submission event listener
-  elements.modalWindow.addEventListener('submit',  (event) => {
+  elements.modalWindow.addEventListener('submit', (event) => {
     addTask(event)
   });
 }
@@ -224,47 +224,58 @@ function toggleModal(show, modal = elements.modalWindow) {
  * COMPLETE FUNCTION CODE
  * **********************************************************************************************************************************************/
 
+// Function to handle adding a new task
 function addTask(event) {
   event.preventDefault(); 
 
-  //Assign user input to the task object
-    const task = {
-      title: document.querySelector('#title-input').value,
-      description: document.querySelector('#desc-input').value,
-      status: document.querySelector('#select-status').value
-    };
-    const newTask = createNewTask(task);
-    if (newTask) {
-      addTaskToUI(newTask);
-      toggleModal(false);
+  // Assign user input to the task object
+  const task = {
+      title: elements.titleInput.value,
+      description: elements.descInput.value,
+      status: elements.selectStatus.value,
+      board: activeBoard,
+  };
+  
+  const newTask = createNewTask(task); // Assuming createNewTask is defined elsewhere
+  if (newTask) {
+      addTaskToUI(newTask); // Assuming addTaskToUI is defined elsewhere
+      toggleModal(false, elements.newTaskModal);
       elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
-      event.target.reset();
-      refreshTasksUI();
+      event.target.reset(); // Reset the form inputs
+      refreshTasksUI(); // Assuming refreshTasksUI is defined elsewhere
     }
-}
-
-
-function toggleSidebar(show) {
-  // Check if the sidebar is currently displayed
-  const isSidebarDisplayed = elements.sideBar.style.display === 'block';
-
-  // If 'show' is true and the sidebar is not already visible
-  if (show && isSidebarDisplayed) {
-    elements.sideBar.style.display = 'block'; // Show the sidebar
-    elements.hideSideBarBtn.style.display = 'block'; // Show the hide button
-    elements.showSideBarBtn.style.display = 'none'; // Hide the show button
   }
-  // If 'show' is false and the sidebar is currently visible
-  else if (!show && isSidebarVisible) {
-    elements.sideBar.style.display = 'none'; // Hide the sidebar
-    elements.hideSideBarBtn.style.display = 'none'; // Hide the hide button
-    elements.showSideBarBtn.style.display = 'block'; // Show the show button
-}
 
-}
+  elements.addNewTaskBtn.addEventListener('click', (event) => {
+    toggleModal(true, elements.newTaskModal);
+  });
 
+  elements.cancelAddTaskBtn.addEventListener('click', (event) => {
+    toggleModal(false, elements.newTaskModal);
+  });
+
+  function toggleSidebar(show) {
+    // Get the current display state of the sidebar
+    const isSidebarDisplayed = elements.sideBar.style.display === 'block' || window.getComputedStyle(elements.sideBar).display === 'block';
+  
+    // If 'show' is true and the sidebar is not already visible, show the sidebar
+    if (show && !isSidebarDisplayed) {
+      elements.sideBar.style.display = 'block'; // Show the sidebar
+      elements.hideSideBarBtn.style.display = 'block'; // Show the hide button
+      elements.showSideBarBtn.style.display = 'none'; // Hide the show button
+    } 
+    // If 'show' is false and the sidebar is currently visible, hide the sidebar
+    else if (!show && isSidebarDisplayed) {
+      elements.sideBar.style.display = 'none'; // Hide the sidebar
+      elements.hideSideBarBtn.style.display = 'none'; // Hide the hide button
+      elements.showSideBarBtn.style.display = 'block'; // Show the show button
+    }
+  }
+  
+
+  
 function toggleTheme() {
- 
+
 }
 
 
@@ -292,7 +303,7 @@ function saveTaskChanges(taskId) {
   // Create an object with the updated task details
 
 
-  // Update task using a helper functoin
+  // Update task using a helper function
  
 
   // Close the modal and refresh the UI to reflect the changes

@@ -254,6 +254,15 @@ function addTask(event) {
     toggleModal(false, elements.newTaskModal);
   });
 
+
+  // Hide the sidebar by default on page load
+  window.onload = function () {
+    // Initially hide the sidebar and related buttons
+    elements.sideBar.style.display = 'none'; // Sidebar hidden
+    elements.hideSideBarBtn.style.display = 'none'; // Hide button hidden
+    elements.showSideBarBtn.style.display = 'block'; // Show button visible
+  };
+
   function toggleSidebar(show) {
     // Get the current display state of the sidebar
     const isSidebarDisplayed = elements.sideBar.style.display === 'block' || window.getComputedStyle(elements.sideBar).display === 'block';
@@ -273,7 +282,6 @@ function addTask(event) {
   }
   
 
-  
 function toggleTheme() {
 
 }

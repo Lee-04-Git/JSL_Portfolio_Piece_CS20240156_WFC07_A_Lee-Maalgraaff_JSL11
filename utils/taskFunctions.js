@@ -42,6 +42,7 @@ export const putTask = (id, updatedTask) => {
 };
 
 export const deleteTask = (id) => {
+  console.log("deleting task with id:", id);
   const tasks = getTasks();
   const updatedTasks = tasks.filter(task => task.id !== id);
   saveTasks(updatedTasks);

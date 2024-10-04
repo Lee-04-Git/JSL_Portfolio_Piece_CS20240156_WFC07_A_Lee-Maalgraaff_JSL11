@@ -126,7 +126,15 @@ function filterAndDisplayTasksByBoard(boardName) {
     filteredTasks.filter(task => task.status === status).forEach(task => { 
       const taskElement = document.createElement("div");
       taskElement.classList.add("task-div");
-      taskElement.textContent = task.title;
+      let title = document.createElement('h2');
+      title.textContent = task.title;
+      taskElement.appendChild(title);
+      let lineBreak = document.createElement('br');
+      taskElement.appendChild(lineBreak);
+      let description = document.createElement('p');
+      description.textContent = task.description;
+      taskElement.appendChild(description);
+      // taskElement.textContent = task.title;
       taskElement.setAttribute('data-task-id', task.id);
 
       // Listen for a click event on each task and open a modal

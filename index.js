@@ -66,7 +66,7 @@ const elements = {
 
 }
 
-let activeBoard = ""
+let activeBoard = "";
 
 // Extracts unique board names from tasks
 // TASK: FIX BUGS - FIXED
@@ -126,15 +126,7 @@ function filterAndDisplayTasksByBoard(boardName) {
     filteredTasks.filter(task => task.status === status).forEach(task => { 
       const taskElement = document.createElement("div");
       taskElement.classList.add("task-div");
-      let title = document.createElement('h2');
-      title.textContent = task.title;
-      taskElement.appendChild(title);
-      let lineBreak = document.createElement('br');
-      taskElement.appendChild(lineBreak);
-      let description = document.createElement('p');
-      description.textContent = task.description;
-      taskElement.appendChild(description);
-      // taskElement.textContent = task.title;
+      taskElement.textContent = task.title;
       taskElement.setAttribute('data-task-id', task.id);
 
       // Listen for a click event on each task and open a modal
@@ -279,7 +271,7 @@ function addTask(event) {
   };
   
   console.log(task);
-  const newTask = createNewTask(task); // Assuming createNewTask is defined elsewhere
+  const newTask = createNewTask(task);
   console.log(newTask);
   if (newTask) {
       addTaskToUI(newTask); // Assuming addTaskToUI is defined elsewhere
@@ -317,7 +309,8 @@ function addTask(event) {
 
   function toggleSidebar(show) {
     // Get the current display state of the sidebar
-    const isSidebarDisplayed = elements.sideBar.style.display === 'block' || window.getComputedStyle(elements.sideBar).display === 'block';
+    const isSidebarDisplayed = elements.sideBar.style.display === 'block' || window.
+    getComputedStyle(elements.sideBar).display === 'block';
   
     // If 'show' is true and the sidebar is not already visible, show the sidebar
     if (show && !isSidebarDisplayed) {
@@ -333,19 +326,19 @@ function addTask(event) {
     }
   }
   
-
 function toggleTheme() {
     if (elements.themeSwitch.checked) {
         document.body.classList.remove('dark-theme');
         document.body.classList.add('light-theme');
-    } else {
+    }
+     else {
         document.body.classList.remove('light-theme');
         document.body.classList.add('dark-theme'); 
     }
 }
+
 // Add event listener for the theme switch
 elements.themeSwitch.addEventListener('change', toggleTheme);
-
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
@@ -371,7 +364,6 @@ function openEditTaskModal(task) {
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
 }
 
-
 function saveTaskChanges(taskId) {
   // Get new user inputs from the modal
   const updatedTitle = elements.editTaskTitleInput.value;
@@ -394,10 +386,6 @@ function saveTaskChanges(taskId) {
   // Refresh the UI to reflect the changes
   refreshTasksUI(); // Refresh the tasks in the UI
 }
-
-
-
-
 
 /*************************************************************************************************************************************************/
 

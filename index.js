@@ -349,43 +349,47 @@ function openEditTaskModal(task) {
   elements.saveTaskChangesBtn = document.getElementById('save-task-changes-btn');
 
   // Call saveTaskChanges upon click of Save Changes button
-  elements.saveTaskChangesBtn.addEventListener('click', () => {
-    // Update the task with the new values from the modal inputs
-    task.title = elements.editTaskTitleInput.value;
-    task.description = elements.editTaskDescriptionInput.value;
-    task.status = elements.editTaskStatusInput.value;
-
-    saveTaskChanges(task); 
-    refreshTasksUI();
-    toggleModal(false, elements.editTaskModal);
-  });
-
+  elements.saveTaskChangesBtn.onclick = () => {
+    saveTaskChanges(task.id); // Pass the task ID to saveTaskChanges
+  };
 
   // Delete task using a helper function and close the task modal
-    elements.deleteTaskBtn.addEventListener('click', () => {
-      deleteTask(task.id);
-      refreshTasksUI();
-      toggleModal(false, elements.editTaskModal);
-    })
+  elements.deleteTaskBtn.onclick = () => {
+    deleteTask(task.id);
+    refreshTasksUI();
+    toggleModal(false, elements.editTaskModal);
+  };
 
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
 }
 
 
 function saveTaskChanges(taskId) {
-  // Get new user inputs
-  
+  // Get new user inputs from the modal
+  const updatedTitle = elements.editTaskTitleInput.value;
+  const updatedDescription = elements.editTaskDescriptionInput.value;
+  const updatedStatus = elements.editTaskStatusInput.value;
 
   // Create an object with the updated task details
+  const updates = {
+    title: updatedTitle,
+    description: updatedDescription,
+    status: updatedStatus,
+  };
 
+  // Update task using the patchTask helper function
+  patchTask(taskId, updates); // Call the helper function to update the task
 
-  // Update task using a helper function
- 
+  // Close the modal
+  toggleModal(false, elements.editTaskModal); 
 
-  // Close the modal and refresh the UI to reflect the changes
-
-  refreshTasksUI();
+  // Refresh the UI to reflect the changes
+  refreshTasksUI(); // Refresh the tasks in the UI
 }
+
+
+
+
 
 /*************************************************************************************************************************************************/
 
